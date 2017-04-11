@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.water.fable.actions.ActionCreator;
 import com.water.fable.dispatchs.Dispatcher;
@@ -30,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
     mActionCreator = ActionCreator.get(mDispatcher);
 
     mDispatcher.register(mSplashStore);
-    mSplashStore.register(this);
+    mSplashStore.bind(this);
 
     new Handler().postDelayed(new Runnable() {
       @Override
@@ -44,12 +45,14 @@ public class SplashActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     mDispatcher.unregister(mSplashStore);
-    mSplashStore.unregister(this);
+    mSplashStore.unbind(this);
   }
 
   @Subscribe
   public void onSplashFinish(Store.IStoreChangeEvent event) {
-    startActivity(new Intent(this, MainActivity.class));
-    finish();
+    if (TextUtils.equals(event.getEventName(), SplashStore.EVENT_SPLASH_FINISH)){
+      startActivity(new Intent(this, MainActivity.class));
+      finish();
+    }
   }
 }

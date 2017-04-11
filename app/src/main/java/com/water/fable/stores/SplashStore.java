@@ -13,7 +13,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class SplashStore extends Store {
 
-  public static final String ACTION_TYPE_SPLASH_FINISH = "splash_finish";
+  public static final String ACTION_TYPE_SPLASH_FINISH = "action_splash_finish";
+  public static final String EVENT_SPLASH_FINISH = "event_splash_finish";
 
   public SplashStore(Dispatcher dispatcher) {
     super(dispatcher);
@@ -22,6 +23,10 @@ public class SplashStore extends Store {
   @Override
   public IStoreChangeEvent changeEvent() {
     return new IStoreChangeEvent() {
+      @Override
+      public String getEventName() {
+        return EVENT_SPLASH_FINISH;
+      }
     };
   }
 

@@ -17,11 +17,11 @@ public abstract class Store {
     mDispatcher = dispatcher;
   }
 
-  public void register(Object view) {
+  public void bind(Object view) {
     EventBus.getDefault().register(view);
   }
 
-  public void unregister(Object view) {
+  public void unbind(Object view) {
     EventBus.getDefault().unregister(view);
   }
 
@@ -34,6 +34,6 @@ public abstract class Store {
   public abstract void onAction(Action action);
 
   public interface IStoreChangeEvent {
-
+    String getEventName();
   }
 }

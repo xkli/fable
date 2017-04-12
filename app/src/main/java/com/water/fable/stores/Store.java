@@ -25,15 +25,24 @@ public abstract class Store {
     EventBus.getDefault().unregister(view);
   }
 
-  public void emitStoreChange() {
-    EventBus.getDefault().post(changeEvent());
+  public void emitStoreChange(String eventName) {
+    EventBus.getDefault().post(changeEvent(eventName));
   }
 
-  public abstract IStoreChangeEvent changeEvent();
+  public abstract StoreChangeEvent changeEvent(String eventName);
 
   public abstract void onAction(Action action);
 
-  public interface IStoreChangeEvent {
-    String getEventName();
+  public class StoreChangeEvent {
+
+    private String mEventName;
+
+    public StoreChangeEvent(String eventName) {
+      mEventName = eventName;
+    }
+
+    public String getEventName() {
+      return mEventName;
+    }
   }
 }

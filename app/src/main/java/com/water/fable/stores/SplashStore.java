@@ -21,20 +21,15 @@ public class SplashStore extends Store {
   }
 
   @Override
-  public IStoreChangeEvent changeEvent() {
-    return new IStoreChangeEvent() {
-      @Override
-      public String getEventName() {
-        return EVENT_SPLASH_FINISH;
-      }
-    };
+  public StoreChangeEvent changeEvent(String eventName) {
+    return new StoreChangeEvent(eventName);
   }
 
   @Subscribe
   @Override
   public void onAction(Action action) {
     if (TextUtils.equals(ACTION_TYPE_SPLASH_FINISH, action.getType())) {
-      emitStoreChange();
+      emitStoreChange(EVENT_SPLASH_FINISH);
     }
   }
 }

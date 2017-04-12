@@ -49,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   @Subscribe
-  public void onSplashFinish(Store.IStoreChangeEvent event) {
+  public void onSplashFinish(Store.StoreChangeEvent event) {
     if (TextUtils.equals(event.getEventName(), SplashStore.EVENT_SPLASH_FINISH)){
       startActivity(new Intent(this, MainActivity.class));
       finish();

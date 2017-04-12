@@ -13,12 +13,12 @@ import com.water.fable.ui.ClassicFragment.OnListFragmentInteractionListener;
 import java.util.List;
 
 
-public class ClassicItemAdapter extends RecyclerView.Adapter<ClassicItemAdapter.ViewHolder> {
+public class ClassicAdapter extends RecyclerView.Adapter<ClassicAdapter.ViewHolder> {
 
   private final List<Fable> mValues;
   private final OnListFragmentInteractionListener mListener;
 
-  public ClassicItemAdapter(List<Fable> items, OnListFragmentInteractionListener listener) {
+  public ClassicAdapter(List<Fable> items, OnListFragmentInteractionListener listener) {
     mValues = items;
     mListener = listener;
   }

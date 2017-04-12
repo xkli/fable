@@ -43,8 +43,12 @@
                         android:layout_marginTop="16dp"
                         android:layout_below="@+id/classic_subtitle"
                         android:layout_height="wrap_content">
-            <Button
-                    android:text="Button"
+            <TextView
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent"
+                    android:text="SHARE"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="8dp"
@@ -52,8 +56,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:id="@+id/button"/>
-            <Button
-                    android:text="Button"
+            <TextView
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent"
+                    android:text="COLLECTION"
                     android:layout_toRightOf="@+id/button"
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="8dp"
@@ -62,9 +70,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/button2"/>
             <ImageButton
+                    android:background="@android:color/transparent"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -79,6 +89,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="24dp"
+                android:textSize="14sp"
                 android:text="content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

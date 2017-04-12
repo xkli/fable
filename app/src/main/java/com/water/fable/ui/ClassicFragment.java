@@ -80,7 +80,7 @@ public class ClassicFragment extends Fragment {
 
     RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    mClassicAdapter=new ClassicAdapter(mClassicStore.getClassicInfos(),null);
+    mClassicAdapter=new ClassicAdapter(getActivity(),mClassicStore.getClassicInfos(),null);
     recyclerView.setAdapter(mClassicAdapter);
     return view;
   }

@@ -42,4 +42,9 @@ public class ActionCreator {
     ClassicAction action = new ClassicAction(ClassicAction.ACTION_CLASSIC_NEW_INFO, fables);
     mDispatcher.dispatch(action);
   }
+
+  public void gotoDetail(Fable item) {
+    DetailAction action = new DetailAction(DetailAction.ACTION_DETAIL_MSG, item);
+    mDispatcher.dispatchSticky(action);
+  }
 }

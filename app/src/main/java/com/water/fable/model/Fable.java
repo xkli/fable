@@ -1,10 +1,12 @@
 package com.water.fable.model;
 
+import java.io.Serializable;
+
 /**
  * Created by lixinke on 2017/4/11.
  */
 
-public class Fable {
+public class Fable implements Serializable{
 
   public String id;
   public String img;

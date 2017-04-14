@@ -2,7 +2,11 @@ package com.water.fable.ui;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -66,6 +70,12 @@ public class ClassicFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    mDispatcher = Dispatcher.get();
+    mActionCreator = ActionCreator.get(mDispatcher);
+    mClassicStore = new ClassicStore(mDispatcher);
+
+    mDispatcher.register(mClassicStore);
+    mClassicStore.bind(this);
   }
 
   @Override
@@ -80,7 +90,17 @@ public class ClassicFragment extends Fragment {
 
     RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-    mClassicAdapter=new ClassicAdapter(getActivity(),mClassicStore.getClassicInfos(),null);
+    mClassicAdapter=new ClassicAdapter(getActivity(), mClassicStore.getClassicInfos(), new OnListFragmentInteractionListener() {
+      @Override
+      public void onListFragmentInteraction(View view1,Fable item) {
+        Intent intent = new Intent(view1.getContext(), DetailActivity.class);
+        intent.putExtra("fable",item);
+        intent.putExtra("img",item.img);
+        Pair<View,String> imagePair=Pair.create(view1, getString(R.string.transitionName_image));
+        ActivityOptionsCompat compat=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),imagePair);
+        ActivityCompat.startActivity(getActivity(), intent, compat.toBundle());
+      }
+    });
     recyclerView.setAdapter(mClassicAdapter);
     return view;
   }
@@ -139,12 +159,6 @@ public class ClassicFragment extends Fragment {
     super.onAttach(context);
     setHasOptionsMenu(true);
     getActivity().setTitle("经典");
-    mDispatcher = Dispatcher.get();
-    mActionCreator = ActionCreator.get(mDispatcher);
-    mClassicStore = new ClassicStore(mDispatcher);
-
-    mDispatcher.register(mClassicStore);
-    mClassicStore.bind(this);
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -185,6 +199,6 @@ public class ClassicFragment extends Fragment {
 
   public interface OnListFragmentInteractionListener {
 
-    void onListFragmentInteraction(Fable item);
+    void onListFragmentInteraction(View view,Fable item);
   }
 }

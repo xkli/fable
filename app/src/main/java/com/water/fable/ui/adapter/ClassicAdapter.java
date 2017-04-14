@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,8 +23,8 @@ public class ClassicAdapter extends RecyclerView.Adapter<ClassicAdapter.ViewHold
   private final List<Fable> mValues;
   private final OnListFragmentInteractionListener mListener;
 
-  public ClassicAdapter(Context context,List<Fable> items, OnListFragmentInteractionListener listener) {
-    mContext=context;
+  public ClassicAdapter(Context context, List<Fable> items, OnListFragmentInteractionListener listener) {
+    mContext = context;
     mValues = items;
     mListener = listener;
   }
@@ -42,12 +43,19 @@ public class ClassicAdapter extends RecyclerView.Adapter<ClassicAdapter.ViewHold
     holder.mIdView.setText(mValues.get(position).title);
     holder.mAuthorView.setText(mValues.get(position).author);
     holder.mContentView.setText(mValues.get(position).content);
+    holder.mArrowView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int visible = holder.mContentView.getVisibility();
+        holder.mContentView.setVisibility(visible == View.VISIBLE ? View.GONE : View.VISIBLE);
+      }
+    });
 
     holder.mView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (null != mListener) {
-          mListener.onListFragmentInteraction(holder.mItem);
+          mListener.onListFragmentInteraction(holder.mImageView, holder.mItem);
         }
       }
     });
@@ -65,15 +73,17 @@ public class ClassicAdapter extends RecyclerView.Adapter<ClassicAdapter.ViewHold
     public final TextView mAuthorView;
     public final TextView mContentView;
     public final ImageView mImageView;
+    public final ImageButton mArrowView;
     public Fable mItem;
 
     public ViewHolder(View view) {
       super(view);
       mView = view;
-      mImageView=(ImageView)view.findViewById(R.id.classic_img);
+      mImageView = (ImageView) view.findViewById(R.id.classic_img);
       mIdView = (TextView) view.findViewById(R.id.classic_title);
-      mAuthorView=(TextView)view.findViewById(R.id.classic_subtitle);
+      mAuthorView = (TextView) view.findViewById(R.id.classic_subtitle);
       mContentView = (TextView) view.findViewById(R.id.classic_brief);
+      mArrowView = (ImageButton) view.findViewById(R.id.imageButton);
     }
 
     @Override

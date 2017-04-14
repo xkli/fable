@@ -28,4 +28,8 @@ public class Dispatcher {
   public void dispatch(Action action) {
     EventBus.getDefault().post(action);
   }
+
+  public void dispatchSticky(Action action) {
+    EventBus.getDefault().postSticky(action);
+  }
 }

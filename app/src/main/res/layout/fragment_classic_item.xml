@@ -4,6 +4,7 @@
                                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                                     card_view:cardCornerRadius="4dp"
                                     card_view:cardUseCompatPadding="true"
+                                    card_view:cardElevation="4dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
     <RelativeLayout android:layout_width="match_parent"
@@ -44,24 +45,33 @@
                         android:layout_below="@+id/classic_subtitle"
                         android:layout_height="wrap_content">
             <TextView
-                    android:padding="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:background="@android:color/transparent"
-                    android:text="SHARE"
+                    android:text="分享"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginTop="8dp"
                     android:id="@+id/button"/>
             <TextView
-                    android:padding="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:background="@android:color/transparent"
-                    android:text="COLLECTION"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="收藏"
                     android:layout_toRightOf="@+id/button"
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="8dp"
@@ -77,6 +87,7 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_expand_more_black_24dp"
                     android:id="@+id/imageButton"/>
